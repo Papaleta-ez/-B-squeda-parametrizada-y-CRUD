@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ProyectoCrud.Controller.ProductoController"
+            prefWidth="1120"
+            prefHeight="720">
+
+  <top>
+    <VBox spacing="12">
+      <padding>
+        <Insets top="15" right="20" bottom="10" left="20"/>
+      </padding>
+
+      <Label text="Gestión de productos"
+             style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+      <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+          <ColumnConstraints prefWidth="100"/>
+          <ColumnConstraints prefWidth="180"/>
+          <ColumnConstraints prefWidth="100"/>
+          <ColumnConstraints prefWidth="180"/>
+        </columnConstraints>
+
+        <Label text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtCodigo"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Nombre:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtNombre"
+                   promptText="Nombre del producto"
+                   GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+        <Label text="Precio:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtPrecio"
+                   promptText="0.00"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Stock:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtStock"
+                   promptText="0"
+                   GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+        <Label text="Categoría:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <ComboBox fx:id="cmbCategoria"
+                  prefWidth="180"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Marca:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <ComboBox fx:id="cmbMarca"
+                  prefWidth="180"
+                  GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+        <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <DatePicker fx:id="dpFecha"
+                    prefWidth="180"
+                    GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Descripción:" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtDescripcion"
+                   promptText="Descripción opcional"
+                   GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+      </GridPane>
+
+      <HBox spacing="8">
+        <Button fx:id="btnNuevo" text="Nuevo"/>
+        <Button fx:id="btnGuardar" text="Guardar"/>
+        <Button fx:id="btnActualizar" text="Actualizar"/>
+        <Button fx:id="btnEliminar" text="Eliminar"/>
+      </HBox>
+
+      <Separator/>
+
+      <Label text="Búsqueda y filtros"
+             style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+      <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+          <ColumnConstraints prefWidth="100"/>
+          <ColumnConstraints prefWidth="180"/>
+          <ColumnConstraints prefWidth="100"/>
+          <ColumnConstraints prefWidth="180"/>
+        </columnConstraints>
+
+        <Label text="Código o nombre:"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtBuscar"
+                   promptText="Buscar..."
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Categoría:"
+               GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="cmbFiltroCategoria"
+                  prefWidth="180"
+                  GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+        <Label text="Desde:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <DatePicker fx:id="dpDesde"
+                    prefWidth="180"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Hasta:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <DatePicker fx:id="dpHasta"
+                    prefWidth="180"
+                    GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+        <Label text="Precio mínimo:"
+               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtPrecioMin"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Precio máximo:"
+               GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtPrecioMax"
+                   GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+        <CheckBox fx:id="chkConExistencias"
+                  text="Solo productos con existencias"
+                  GridPane.columnIndex="0"
+                  GridPane.columnSpan="2"
+                  GridPane.rowIndex="3"/>
+
+        <Label text="Ordenar por:"
+               GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="cmbOrdenar"
+                  prefWidth="180"
+                  GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+      </GridPane>
+
+      <HBox spacing="8">
+        <Button fx:id="btnBuscar" text="Buscar"/>
+        <Button fx:id="btnLimpiarFiltros" text="Limpiar filtros"/>
+      </HBox>
+    </VBox>
+  </top>
+
+  <center>
+    <TableView fx:id="tablaProductos">
+      <BorderPane.margin>
+        <Insets top="5" right="20" bottom="20" left="20"/>
+      </BorderPane.margin>
+
+      <placeholder>
+        <Label text="Tabla sin contenido"/>
+      </placeholder>
+
+      <columns>
+        <TableColumn fx:id="colCodigo" text="Código" prefWidth="120"/>
+        <TableColumn fx:id="colNombre" text="Nombre" prefWidth="220"/>
+        <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="170"/>
+        <TableColumn fx:id="colMarca" text="Marca" prefWidth="150"/>
+        <TableColumn fx:id="colPrecio" text="Precio" prefWidth="100"/>
+        <TableColumn fx:id="colStock" text="Stock" prefWidth="90"/>
+        <TableColumn fx:id="colFecha" text="Fecha creación" prefWidth="160"/>
+      </columns>
+    </TableView>
+  </center>
+
+</BorderPane>
